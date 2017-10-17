@@ -23,17 +23,17 @@
       <thead>
         <tr>
           <th>序号</th>
-          <th @click="changeOrder('id')">PID
-            <span class="glyphicon glyphicon-triangle-top"></span>
+          <th @click="changeOrder('id')" :class="{'text-primary': order==='id'}">PID
+            <span :class="{glyphicon:true, 'glyphicon-triangle-top':sorting>0,'glyphicon-triangle-bottom':sorting<0}"></span>
           </th>
-          <th @click="changeOrder('name')">产品名称
-            <span class="glyphicon glyphicon-triangle-top"></span>
+          <th @click="changeOrder('name')" :class="{'text-primary': order==='name'}">产品名称
+            <span :class="{glyphicon:true, 'glyphicon-triangle-top':sorting>0,'glyphicon-triangle-bottom':sorting<0}"></span>
           </th>
-          <th @click="changeOrder('price')">产品单价
-            <span class="glyphicon glyphicon-triangle-top"></span>
+          <th @click="changeOrder('price')" :class="{'text-primary': order==='price'}">产品单价
+            <span :class="{glyphicon:true, 'glyphicon-triangle-top':sorting>0,'glyphicon-triangle-bottom':sorting<0}"></span>
           </th>
-          <th @click="changeOrder('num')">产品数量
-            <span class="glyphicon glyphicon-triangle-top"></span>
+          <th @click="changeOrder('num')" :class="{'text-primary': order==='num'}">产品数量
+            <span :class="{glyphicon:true, 'glyphicon-triangle-top':sorting>0,'glyphicon-triangle-bottom':sorting<0}"></span>
           </th>
           <th>产品总价</th>
           <th>操作</th>
@@ -51,7 +51,7 @@
             <button @click="plus(product.id)" class="btn btn-primary btn-xs">+</button> 件</td>
           <td>{{ product.num * product.price }} 元</td>
           <td>
-            <button @click="del(index)" class="btn btn-danger btn-sm">
+            <button @click="del(product.id)" class="btn btn-danger btn-sm">
               删除
             </button>
           </td>
@@ -178,8 +178,13 @@
           }
 
         },
-        del(index) {
-          this.products.splice(index, 1)
+        del(id) {
+          for (let i = 0; i < this.products.length; i++) {
+            if (id === this.products[i].id) {
+              this.products.splice(i, 1)
+              return
+            }
+          }
         },
 
         clear() {
