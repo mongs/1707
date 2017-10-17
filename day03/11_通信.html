@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <parent></parent>
+  </div>
+  <script>
+  /*
+    单向数据流：
+      父组件 -> 子组件    prop
+      子组件 -> 父组件     事件
+        子组件  $emit发射事件   父组件 通过$on监听发射的事件
+  */
+  let Child = Vue.extend({
+    template: '<div>{{num}}<button @click="fn">按钮</button></div>',
+    data(){
+      return {
+        num: 17
+      }
+    },
+    methods: {
+      fn(){
+        this.num++
+        // 发射事件
+        this.$emit('childEvent')
+      }
+    }
+  })
+  Vue.component('parent',{
+    template: '<div><child @childEvent="show"></child></div>',
+    components: {
+      Child
+    },
+    methods: {
+      show(){
+        alert(1)
+      }
+    }
+  })
+  new Vue({
+    el: '#app'
+  })
+  </script>
+</body>
+</html>

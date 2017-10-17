@@ -7,15 +7,29 @@
 </head>
 <body>
   <div id="app">
-    <parent msg="12" a="123"></parent>
+    <parent msg="12" a="123" d="12"></parent>
   </div>
   <script>
   Vue.component('parent',{
     props: {
       msg: String,
-      a: {type: String,required: true}
+      a: {type: String,required: true},
+      b: {type: String, default: 'abc'},
+      // 如果类型是数组/对象  默认值 需要是函数的返回值
+      c: {
+        type: Object, 
+        default: function(){
+          return {name:'wally',age:17}
+        }
+      },
+      // 自定义验证规则
+      d: {
+        validator: function(value){
+          return value > 5 && value < 10
+        }
+      }
     },
-    template: '<div><h1>{{ msg }}</h1></div>'
+    template: '<div><h1>{{ msg }} - b = {{b}} <br /> {{ c }}</h1></div>'
   })
   new Vue({
     el: '#app'
