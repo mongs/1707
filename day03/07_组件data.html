@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <hello></hello>
+  </div>
+  <script>
+  Vue.component('hello', {
+    template: '<h1>Hello {{ msg }}</h1>',
+    // 组件内部的 data  必须是 函数形式
+    // 而且 必须  返回一个对象
+    data(){
+      return {
+        msg: 'vue.js'
+      }
+    }
+  })
+  new Vue({
+    el: '#app',
+    
+  })
+  </script>
+</body>
+</html>

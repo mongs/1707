@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <parent msg="12" a="123"></parent>
+  </div>
+  <script>
+  Vue.component('parent',{
+    props: {
+      msg: String,
+      a: {type: String,required: true}
+    },
+    template: '<div><h1>{{ msg }}</h1></div>'
+  })
+  new Vue({
+    el: '#app'
+  })
+  </script>
+</body>
+</html>

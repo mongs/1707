@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="str">
+    <hello :new-msg="str"></hello>
+  </div>
+  <script>
+  let Child = Vue.extend({
+    props:['childMsg'],
+    template: '<p>hello i\'m this child component {{ childMsg }}</p>'
+  })
+  let Brother = Vue.extend({
+    props:['brotherMsg'],
+    template: '<p>this is the second child componet --> {{ brotherMsg }}</p>'
+  })
+  // 组件模版  只能包含  一个根节点
+  Vue.component('hello', {
+    props: ['newMsg'],
+    template: '<div><h1>Hello {{ msg }} - {{newMsg}}</h1><child :child-msg="change"></child><brother brother-msg="╰_ ╯连我的父组件你都敢瞅"></brother></div>',
+    components: {
+      'child': Child,
+      Brother
+    },
+    data(){
+      return {
+        msg: 'vue.js'
+      }
+    },
+    computed: {
+      change(){
+        // 在组件内部可以通过  this.prop名 拿到对应的数据
+        console.log(this.newMsg)
+        return this.newMsg + "-_-"
+      }
+    }
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      str: ''
+    }
+  })
+  </script>
+</body>
+</html>

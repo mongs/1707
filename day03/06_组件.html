@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+<app-child></app-child>
+  </div>
+
+  <div id="wrap">
+    <hi></hi>
+  </div>
+
+  <script>
+  let appChild = Vue.extend({
+    template: '<p>this is the child</p>'
+  })
+  new Vue({
+    el: '#app',
+    components: {
+      'appChild': appChild
+    }
+  })
+  /*
+  js 中组件名使用驼峰命名 camelCase
+  html 中 转换成-的形式 kebab-case
+  如： appChild -> app-child
+  */
+
+  var Child = {
+    template: '<h2>Hi, Girl!</h2>'
+  }
+  new Vue({
+    el: '#wrap',
+    components: {  // 局部组件
+      'hi': Child
+    }
+  })
+
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <hello></hello>
+  </div>
+  <script>
+  let Child = Vue.extend({
+    template: '<p>hello i\'m this child component</p>'
+  })
+  let Brother = Vue.extend({
+    template: '<p>this is the second child componet</p>'
+  })
+  // 组件模版  只能包含  一个根节点
+  Vue.component('hello', {
+    template: '<div><h1>Hello {{ msg }}</h1><child></child><brother></brother></div>',
+    components: {
+      'child': Child,
+      Brother
+    },
+    data(){
+      return {
+        msg: 'vue.js'
+      }
+    }
+  })
+  new Vue({
+    el: '#app',
+    
+  })
+  </script>
+</body>
+</html>
