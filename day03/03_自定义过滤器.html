@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>{{ str1 | upper | reverse | limit(0,3) }}</h1>
+  </div>
+  <script>
+  // 大写的过滤器
+  Vue.filter('upper', function(value){
+    console.log(value)  // value 就是过滤器作用的对象
+    return value.toUpperCase()
+  })
+  // 反转字符串的过滤器
+  Vue.filter('reverse', function(value){
+    console.log(value)  // value 就是过滤器作用的对象
+    return value.split('').reverse().join('')
+  })
+  // 反转字符串的过滤器
+  Vue.filter('limit', function(value,start,length){
+    console.log(value,length)  // value 就是过滤器作用的对象
+    return value.substr(start,length)
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      str1: 'feng Jun'
+    }
+  })
+  </script>
+</body>
+</html>
