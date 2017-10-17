@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <hello></hello>
+  </div>
+
+  <div id="wrap">
+    <hello></hello>
+    <hi></hi>
+  </div>
+
+  <script>
+  // 全局组件 在其下方实例化的 vue 作用范围内  都可以使用
+  // 必须要在vue实例化之前注册
+  Vue.component('hello', {
+    template: '<h1>Hello World</h1>'
+  })
+  new Vue({
+    el: '#app'
+  })
+  new Vue({
+    el: '#wrap',
+    components: {  // 局部组件
+      'hi': {
+        template: '<h2>Hi, Girl!</h2>'
+      }
+    }
+  })
+
+  
+  </script>
+</body>
+</html>

@@ -1,36 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="js/vue.js"></script>
 </head>
+
 <body>
   <div id="app">
     <h1>{{ str1 | upper | reverse | limit(0,3) }}</h1>
+    <ul>
+      <li v-for="(item,index) in filterBy(items,'四')">{{ item }}</li>
+    </ul>
+    <input type="text" v-model="key">
+    <ul>
+      <li v-for="(item, index) in filterBy(datas, key, 'name')">
+        <p>{{ item.id }}</p>
+        <p>{{ item.name }}</p>
+        <p>{{ item.factory }}</p>
+      </li>
+    </ul>
   </div>
   <script>
-  // 大写的过滤器
-  Vue.filter('upper', function(value){
-    console.log(value)  // value 就是过滤器作用的对象
-    return value.toUpperCase()
-  })
-  // 反转字符串的过滤器
-  Vue.filter('reverse', function(value){
-    console.log(value)  // value 就是过滤器作用的对象
-    return value.split('').reverse().join('')
-  })
-  // 反转字符串的过滤器
-  Vue.filter('limit', function(value,start,length){
-    console.log(value,length)  // value 就是过滤器作用的对象
-    return value.substr(start,length)
-  })
-  new Vue({
-    el: '#app',
-    data: {
-      str1: 'feng Jun'
-    }
-  })
+    // 大写的过滤器
+    Vue.filter('upper', function (value) {
+      console.log(value) // value 就是过滤器作用的对象
+      return value.toUpperCase()
+    })
+    // 反转字符串的过滤器
+    Vue.filter('reverse', function (value) {
+      console.log(value) // value 就是过滤器作用的对象
+      return value.split('').reverse().join('')
+    })
+    // 反转字符串的过滤器
+    Vue.filter('limit', function (value, start, length) {
+      console.log(value, length) // value 就是过滤器作用的对象
+      return value.substr(start, length)
+    })
+    new Vue({
+      el: '#app',
+      data: {
+        str1: 'feng Jun',
+        key: '',
+        datas: [{
+            id: 13,
+            name: 'iphone 5',
+            factory: '北京富士康'
+          },
+          {
+            id: 14,
+            name: 'iphone 6S',
+            factory: '北京富士康'
+          },
+          {
+            id: 15,
+            name: 'iphone 7',
+            factory: '太原富士康'
+          },
+          {
+            id: 16,
+            name: 'iphone 7S',
+            factory: '太原富士康'
+          },
+          {
+            id: 17,
+            name: 'iphone 6+',
+            factory: '西安富士康'
+          },
+          {
+            id: 18,
+            name: 'iphone 7+',
+            factory: '太原富士康'
+          }
+        ],
+        items: ['张三', '李四', '王老五', '赵四', '钱老八']
+      },
+      methods: {
+        filterBy(array, keyword, words) {
+          let arr = []
+          if (!words) {
+            array.forEach(function (element) {
+              if (JSON.stringify(element).includes(keyword)) {
+                arr.push(element)
+              }
+            }, this);
+          }else{
+            array.forEach(function (element) {
+              if (element[words].includes(keyword)) {
+                arr.push(element)
+              }
+            }, this);
+          }
+          return arr
+        }
+      }
+    })
   </script>
 </body>
+
 </html>

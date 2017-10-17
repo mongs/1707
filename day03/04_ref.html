@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1 ref="title">Hello Vue</h1>
+    <button @click="changeHtml">changeHtml</button>
+  </div>
+  <script>
+  new Vue({
+    el: '#app',
+    methods: {
+      changeHtml(){
+        console.log(this.$refs.title)
+        this.$refs.title.innerHTML = "你好,世界"
+      }
+    }
+  })
+  </script>
+</body>
+</html>
