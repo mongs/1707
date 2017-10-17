@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <select v-model="size">
+      <option value="18px">18</option>
+      <option value="20px">20</option>
+      <option value="22px">22</option>
+      <option value="24px">24</option>
+    </select>
+    <p v-bind:style="{fontSize: size}">Hello Vue.js</p>
+
+    <hr>
+    绑定一个对象
+    <div v-bind:style="box"></div>
+    绑定多个对象  放到数组中
+    <div v-bind:style="[box,bar]"></div>
+  </div>
+  <script>
+    /*
+    v-bind:属性名
+      绑定属性
+      简写:  :属性名
+        :src   ->  v-bind:src
+        :style
+        :class
+        ...
+    */
+  new Vue({
+    el: '#app',
+    data: {
+      size: '14px',
+      box: {
+        width: '200px',
+        height: '200px',
+        background: '#f00'
+      },
+      bar: {
+        display: 'flex',
+        transform: 'translateX(200px)',
+        border: '5px solid #ff0'
+      }
+    }
+  })
+  </script>
+</body>
+</html>

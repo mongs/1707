@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input v-model="val" type="text" >
+    <h1> {{ val }} </h1>
+  </div>
+  
+  <script>
+    // vue 显式声明
+    new Vue({
+      el: '#app',
+      data: {   // 数据
+        val: ''
+      }
+    })
+  </script>
+</body>
+</html>

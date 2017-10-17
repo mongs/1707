@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+  [v-cloak] {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <input type="checkbox" v-model="flag">
+    <p v-show="flag">Hello </p>
+    <p v-if="flag">if </p>
+
+    <h1 v-cloak>{{ num }}</h1>
+
+    <p v-if="num<3">
+      num小于3
+    </p>
+    <p v-else-if="num>=3 && num<7">
+      num 大于等于3 小于7
+    </p>
+    <p v-else>
+      num 大于等于7
+    </p>
+
+    <span v-pre>{{ 原样输出  不会编译大括号 }}</span>
+
+    <p v-once>只渲染/只绑定一次{{flag}}</p>
+
+  </div>
+  
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      flag: false,
+      num: Math.floor(Math.random()*10)
+    }
+  })
+   /*
+    v-if 如果是false  会移除元素
+    v-else
+    v-else-if
+    v-show 控制的是 display
+    */
+  </script>
+</body>
+</html>

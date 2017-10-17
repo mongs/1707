@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" @keyup.enter="say" v-model="val">
+    <ul v-show="items.length>0">
+      <li v-for="(item,index) in items">
+        {{item}}
+      </li>
+    </ul>
+    <div :style="obj" @mousedown.prevent.right="fn"></div>
+  </div>
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      val: '',
+      items: [],
+      obj: {
+        width: '800px',
+        height: '400px',
+        border: '1px solid #ccc'
+      }
+    },
+    methods: {
+      say(){
+        this.items.push(this.val)
+        this.val = ''
+      },
+      fn(){
+        alert(1)
+      }
+    }
+  })
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(value,key) in obj">
+        {{ key }} 是 --  {{ value }}
+      </li>
+    </ul>
+  </div>
+  <script>
+    /*
+       v-for:
+          遍历对象
+          v-for="(value,key) in obj"
+            obj: data 中的数据
+            value: 值
+            key: 键
+      */
+
+    new Vue({
+      el: '#app',
+      data: {
+        obj: {
+          name: "wally",
+          age: 17,
+          sex: "man"
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

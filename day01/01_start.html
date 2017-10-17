@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- #app 中写的内容由vue管理 -->
+    {{ 1+2 }}  <br>
+    {{ "hello" + " - " + "world" }}   <br>
+    {{ true }}  <br>
+    true || false : {{ true || false }}  <br>
+    true && false: {{ true && false }}  <br>
+    {{ undefined }}  <br>
+    {{ null }}  <br>
+
+    三元运算: {{ true ? '真的' : '假的' }}
+
+  </div>
+
+  {{ 1+2 }}
+  
+  <script>
+  // 
+  new Vue({
+    el: '#app'
+  })
+  /*
+  el: element  元素
+    定义vue的管理边界
+     值是选择器
+
+  {{}}   表达式  Mustache
+    undefined, null  是不会报错   只是没有输出
+
+    表达式中  可以写三元运算
+        但是不能写 其他的流程控制语句(if else while for)
+  */
+  </script>
+</body>
+</html>

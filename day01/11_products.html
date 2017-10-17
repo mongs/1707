@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <table class="table table-bordered table-stripe">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>PID</th>
+          <th>产品名称</th>
+          <th>产品单价</th>
+          <th>产品数量</th>
+          <th>产品总价</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(product,index) in products">
+          <td>{{ index+1 }}</td>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }} 元</td>
+          <td>{{ product.num }} 件</td>
+          <td>{{ product.num * product.price }} 元</td>
+          <td>
+            <button @click="del(index)" class="btn btn-danger btn-sm">
+              删除
+            </button>
+          </td>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>总数： </td>
+          <td>{{ getTotalNum() }}</td>
+          <td>总价： </td>
+          <td colspan="2">{{ getTotalPrice() }} 元</td>
+          <td colspan="2">
+            <button @click="clear" class="btn btn-danger btn-sm">
+              清空购物车
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        products: [{
+            id: 123123,
+            name: '小米4',
+            price: 2999,
+            num: 250
+          },
+          {
+            id: 123124,
+            name: '坚果PRO',
+            price: 3999,
+            num: 550
+          },
+          {
+            id: 123125,
+            name: 'iPhone8',
+            price: 1999,
+            num: 50
+          },
+          {
+            id: 123126,
+            name: 'iPhone8 Plus',
+            price: 5999,
+            num: 1
+          }
+        ]
+      },
+      methods: {
+        del(index) {
+          this.products.splice(index, 1)
+        },
+        getTotalNum() {
+          let _totalNum = 0
+          this.products.forEach(function (element) {
+            console.log(this) //this
+            _totalNum += element.num
+          }, this);
+          // this 指定回调函数中this的指向
+          // 如果不改变的话  这里的this -> window
+          return _totalNum
+        },
+        getTotalPrice() {
+          let _totalPrice = 0
+          this.products.forEach(function (element) {
+            console.log(this) //this
+            _totalPrice += element.num * element.price
+          }, this);
+          return _totalPrice
+        },
+        clear() {
+          this.products = []
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

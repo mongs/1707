@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button v-on:click="show('Vue.js')">按钮</button>
+    <button v-on:click="plus"> + </button>
+    <h1>{{ num }}</h1>
+    <button @click="minus"> - </button>
+  </div>
+  <script>
+    /*
+        v-on:事件名="methods中的函数名"
+        简写: @事件名="methods中的函数名"
+    */
+    var vm = new Vue({
+      el: '#app',
+      data: { // 数据
+        num: 17
+      },
+      methods: { // 方法  行为
+        show: function (pram) {
+          alert('hello' + pram)
+        },
+        plus() {   // ES6 简写方式
+          console.log(this)
+          console.log(this.num)
+          console.log(this === vm) // true
+          this.num++
+        },
+        minus() {
+          this.num--
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

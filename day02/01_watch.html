@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="num">
+    <input type="text" v-model="obj.name">
+  </div>
+  <script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      num: 10,
+      obj: {
+        name: 'wally',
+        age: 17
+      }
+    },
+    watch: {
+      num: function(val,oldVal){
+        console.log(val, oldVal)
+      },
+      "obj.name": function(val,oldVal){
+        //console.log(val, oldVal)
+      },
+      obj: {
+        handler: function(val,oldVal){
+          console.log(val, oldVal)
+        },
+        deep: true   // 深度监听
+      }
+    }
+  })
+  /*
+  watch 监听数据的变化
+    引用类型的数据要想监听到其中每一项数据的变化
+    需要深度监听
+    因为用的是同一份数据, 所以新值 跟 旧值是一样的   都是新值
+    数据: {
+        handler: function(val,oldVal){
+          console.log(val, oldVal)
+        },
+        deep: true   // 深度监听
+    }
+  */
+  </script>
+</body>
+</html>

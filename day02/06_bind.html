@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+<img :src="src" alt="">
+<a :href="src" :index="src">链接</a>
+  </div>
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      src: 'https://cn.vuejs.org/images/logo.png'
+    }
+  })
+  </script>
+</body>
+</html>

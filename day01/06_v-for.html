@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="teacher in teachers">
+        {{ teacher }}
+      </li>
+    </ul>
+    <div>
+      <p v-for="(teacher,index) in teachers">
+        老师: {{ index }} - {{ teacher }}
+      </p>
+    </div>
+  </div>
+  <script>
+    /*
+        v-for: 遍历
+        v-for="teacher in teachers"
+          teachers:  data 中的数据
+          teacher: 当前遍历项
+
+        v-for="(teacher,index) in teachers"
+          index: 当前遍历项的索引值
+      */
+
+    new Vue({
+      el: '#app',
+      data: {
+        teachers: [
+          "张天",
+          "柴冰倩",
+          "杨芳"
+        ]
+      }
+    })
+  </script>
+</body>
+
+</html>

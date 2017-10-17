@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <script src="js/vue2-filters.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- capitalize 首字母大写 -->
+    <h1>{{ 'hello' | capitalize }}</h1>
+    <!-- uppercase 全部大写 -->
+    <h1>{{ 'hello' | uppercase }}</h1>
+    <!-- lowercase 全部小写 -->
+    <h1>{{ 'HEllo' | lowercase }}</h1>
+    <!-- placeholder('占位文字') -->
+    <h1>{{ '' | placeholder('占位文字') }}</h1>
+    <h1>{{ 'hello' | placeholder('占位文字') }}</h1>
+    <!-- truncate(保留的字符数) -->
+    <h1>{{ 'hello' | truncate(3)  }}</h1>
+    <!-- currency('符号','保留小数位数') 格式化 -->
+    <h1>{{ 125 | currency }}</h1>
+    <h1>{{ 125 | currency('¥') }}</h1>
+    <h1>{{ 125 | currency('人民币',3) }}</h1>
+
+    <!-- limitBy(items, '显示length', '从第几条开始显示') -->
+    <ul>
+      <li v-for="(item,index) in limitBy(items, 2)">
+        {{ item }}
+      </li>
+    </ul>
+    <hr>
+    <ul>
+        <li v-for="(item,index) in limitBy(items, 2, 2)">
+          {{ item }}
+        </li>
+      </ul>
+
+      <hr>
+      <input type="text" v-model="keyword">
+      <ul>
+        <li v-for="(item,index) in filterBy(items, keyword)">
+          {{ item }}
+        </li>
+      </ul>
+  </div>
+  <script>
+  new Vue({
+    el: '#app',
+    data: {
+      keyword: '',
+      items: ['张三', '李四', '王老五', '赵四', '钱老八']
+    }
+  })
+  </script>
+</body>
+</html>

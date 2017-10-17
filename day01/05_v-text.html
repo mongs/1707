@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>课程是： {{ lesson }}</p>
+    <p v-text="lesson"></p>
+    <div>
+      {{ str }}
+    </div>
+    <div v-text="str"></div>
+    <div v-html="str"></div>
+  </div>
+  <script>
+    /*
+    v-*  指令
+      v-model
+      v-text:   
+        绑定文本内容   推荐还是用{{}}
+        不会解析标签
+      v-html:
+        绑定html内容
+        慎用, 防止跨站攻击
+    */
+  new Vue({
+    el: '#app',
+    data: {
+      lesson: 'web',
+      teacher: 'wally',
+      str: '<h1>Hello Vue.js</h1>'
+    }
+  })
+  //EaseServer  服务器环境  ctrl+shift+enter
+  </script>
+</body>
+</html>

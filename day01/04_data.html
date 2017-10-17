@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li>姓名是: {{ name }}</li>
+      <li>年龄是: {{ age }}</li>
+      <li>是男的吗: {{ isMan }}</li>
+    </ul>
+  </div>
+  <script>
+  /*
+    v-model  双向
+    {{}}  单向绑定    data -> html  M -> V
+  */
+  new Vue({
+    el: '#app',
+    data: {
+      name: 'wally',
+      age: 17,
+      isMan: true
+    }
+  })
+  </script>
+</body>
+</html>

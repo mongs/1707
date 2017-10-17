@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <input type="text">
+  <input type="text">
+  <input  type="text">
+  <input type="text">
+  <input type="text">
+  <script>
+  var ipt1 = document.getElementsByTagName('input')[0]
+  var ipt2 = document.getElementsByTagName('input')[1]
+  ipt1.oninput = function(){
+    var _val = this.value
+    ipt2.value = _val
+  }
+  ipt2.oninput = function(){
+    var _val = this.value
+    ipt1.value = _val
+  }
+  </script>
+</body>
+</html>

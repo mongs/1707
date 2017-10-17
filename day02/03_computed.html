@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="name" >
+    <h1>{{ reverse }}</h1>
+    <h1>{{ addFirst }}</h1>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        name: 'wally'
+      },
+      computed: {  // 计算属性
+        reverse(){
+          return this.name.split('').reverse().join('')
+        },
+        addFirst(){
+          return '太原市' + this.name
+        }
+      }
+    })
+  </script>
+</body>
+</html>

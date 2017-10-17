@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input v-model="val" type="text" >
+    <input v-model="val" type="text" >
+    <input v-model="val" type="text" >
+    <input v-model="val" type="text" >
+  </div>
+  <script>
+  /*
+    v-model   双向数据绑定
+    data: {   model 数据模型
+      key: value
+    }
+  */
+  new Vue({
+    el: '#app',
+    data: {
+      val: ''
+    }
+  })
+  </script>
+</body>
+</html>

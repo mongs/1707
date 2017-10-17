@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" >
+  <h1></h1>
+  <script>
+  var ipt = document.querySelector('input')
+  var h1 = document.querySelector('h1')
+  ipt.oninput = function(){
+    var _val = this.value
+    h1.innerHTML = _val
+  }
+  </script>
+</body>
+</html>

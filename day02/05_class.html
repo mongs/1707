@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="js/vue.js"></script>
+  <style>
+  .blue{background: #00f}
+  .green{background: #0f0}
+  .red{background: #f00}
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div v-bind:class="color">Hello</div>
+
+    <div v-bind:class="{red:false,blue:true}">Hello</div>
+
+    <div v-bind:class="{red:cls,blue:!cls}">Hello</div>
+
+    <input type="checkbox" v-model="cls">
+
+  </div>
+  <script>
+    /*
+    v-bind:属性名
+      绑定属性
+      简写:  :属性名
+        :src   ->  v-bind:src
+        :style
+        :class
+        ...
+    */
+  new Vue({
+    el: '#app',
+    data: {
+      color: 'red',
+      cls: true
+    }
+  })
+  </script>
+</body>
+</html>
