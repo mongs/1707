@@ -9,6 +9,7 @@
 		<!-- CSS overrides - remove if you don't need it -->
 		<link rel="stylesheet" href="css/app.css">
 		<script src="js/vue.js"></script>
+		<script src="js/vue2-filters.min.js"></script>
 	</head>
 	<body>
 		<section class="todoapp" id="app">
@@ -23,7 +24,7 @@
 				<ul class="todo-list" ref="todoList">
 					<!-- These are here just to show the structure of the list items -->
 					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li :class="{completed: item.isCompleted,editing: editingIndex === index}" v-for="(item,index) in datas" @dblclick="edit(index)">
+					<li :class="{completed: item.isCompleted,editing: editingIndex === index}" v-for="(item,index) in filterBy(datas, keyword)" @dblclick="edit(index)">
 						<div class="view">
 							<input v-model="item.isCompleted" class="toggle" type="checkbox">
 							<label>{{ item.title }}</label>
@@ -40,13 +41,13 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						<a :class="{selected: keyword===''}" href="#/">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a :class="{selected: keyword==='false'}" href="#/active">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a :class="{selected: keyword==='true'}" href="#/completed">Completed</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->

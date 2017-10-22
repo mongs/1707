@@ -5,11 +5,29 @@
 			value: '',  // 显式声明 输入框数据
 			isCheckedAll: false, // 全选
 			editingIndex: '',
+			keyword: '', // 过滤条件 '' -> all false->active true->completed
 			datas: [
 				{id: 123, title: 'HTML5', isCompleted: false},
 				{id: 124, title: 'JavaScript', isCompleted: false},
 				{id: 125, title: 'Vue.js', isCompleted: true}
 			]
+		},
+		mounted () { 
+			window.onhashchange = () => {
+				let hash = location.hash
+				// 根据不同的hash  使用不同的过滤条件
+				switch (hash) {
+					case '#/active':
+						this.keyword = 'false'
+						break;
+				  case '#/completed':
+						this.keyword = 'true'
+						break;
+					default:
+						this.keyword = ''
+						break;
+				}
+			}
 		},
 		methods: {
 			addItem() {
