@@ -3,6 +3,7 @@
 		el: '#app',
 		data: {
 			value: '',  // 显式声明 输入框数据
+			isCheckedAll: false, // 全选
 			datas: [
 				{id: 123, title: 'HTML5', isCompleted: false},
 				{id: 124, title: 'JavaScript', isCompleted: false},
@@ -33,6 +34,17 @@
 			},
 			removeCurrent(index) {
 				this.datas.splice(index, 1)
+			},
+			checkedAll() {
+				if(this.isCheckedAll){ //全部选中
+					this.datas.forEach(element => {
+						element.isCompleted = false
+					})
+				}else{
+					this.datas.forEach(element => {
+						element.isCompleted = true
+					})
+				}
 			}
 		},
 		computed: {
@@ -44,6 +56,20 @@
 					}
 				}
 				return false
+			}
+		},
+		watch: {
+			datas: { // 深度监听
+				handler: function(val){
+					for(let i=0;i<val.length;i++) {
+						if(!val[i].isCompleted) {
+							this.isCheckedAll = false
+							return
+						}
+					}
+					this.isCheckedAll = true
+				},
+				deep: true
 			}
 		}
 	})

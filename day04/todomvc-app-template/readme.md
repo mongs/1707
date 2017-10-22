@@ -129,3 +129,6 @@ computed: {
 ### 点击clear completed清除选中项
 
 ### 点x 删除当前项
+
+### 全选
+
