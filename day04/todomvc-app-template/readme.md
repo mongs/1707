@@ -252,4 +252,46 @@ edit(index) {
 <input class="edit" v-model="item.title" @keyup.enter="editingIndex=''">
 ```
 
+### 通过路由 切换内容显示
 
+控制内容显示要通过过滤器的filterBy，`v-for="(item,index) in filterBy(datas, keyword)"`，keyword是过滤条件，分三种状态：
+
++ all -> keyword=''
++ active -> keyword='false'
++ completed -> keyword='true'
+
+```html
+<li :class="{completed: item.isCompleted,editing: editingIndex === index}" v-for="(item,index) in filterBy(datas, keyword)" @dblclick="edit(index)">
+```
+
+根据不同的hash改变keyword的值
+
+```js
+mounted () {
+  window.onhashchange = () => {
+    let hash = location.hash
+    // 根据不同的hash  使用不同的过滤条件
+    switch (hash) {
+      case '#/active':
+        this.keyword = 'false'
+        break;
+      case '#/completed':
+        this.keyword = 'true'
+        break;
+      default:
+        this.keyword = ''
+        break;
+    }
+  }
+}
+```
+
+### 控制按钮的选中样式
+
+通过keyword的值，决定是否给当前元素绑定selected的class
+
+```html
+<a :class="{selected: keyword===''}" href="#/">All</a>
+<a :class="{selected: keyword==='false'}" href="#/active">Active</a>
+<a :class="{selected: keyword==='true'}" href="#/completed">Completed</a>
+```
