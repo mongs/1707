@@ -4,6 +4,7 @@
 		data: {
 			value: '',  // 显式声明 输入框数据
 			isCheckedAll: false, // 全选
+			editingIndex: '',
 			datas: [
 				{id: 123, title: 'HTML5', isCompleted: false},
 				{id: 124, title: 'JavaScript', isCompleted: false},
@@ -45,6 +46,17 @@
 						element.isCompleted = true
 					})
 				}
+			},
+			edit(index) {
+				this.editingIndex = index
+				/*
+				// DOM 操作
+				let lists = this.$refs.todoList.children
+				for(let i=0;i<lists.length;i++){
+					lists[i].classList.remove('editing')
+				}
+				lists[index].classList.add('editing')
+				*/
 			}
 		},
 		computed: {
