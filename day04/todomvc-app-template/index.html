@@ -23,7 +23,7 @@
 				<ul class="todo-list">
 					<!-- These are here just to show the structure of the list items -->
 					<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-					<li v-for="(item,index) in datas">
+					<li :class="{completed: item.isCompleted}" v-for="(item,index) in datas">
 						<div class="view">
 							<input class="toggle" type="checkbox">
 							<label>{{ item.title }}</label>
