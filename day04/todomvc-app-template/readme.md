@@ -40,3 +40,20 @@ $ npm install
 }
 
 ```
+
+### 绑定假数据
+
+用v-for 将假数据绑定到li上
+
+如果当前项的isCompleted是true，添加completed这个class，显示选中样式 `:class="{completed: item.isCompleted}"`
+
+```html
+<li :class="{completed: item.isCompleted}" v-for="(item,index) in datas">
+  <div class="view">
+    <input class="toggle" type="checkbox">
+    <label>{{ item.title }}</label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="Rule the web">
+</li>
+```
