@@ -29,7 +29,7 @@
 							<label>{{ item.title }}</label>
 							<button class="destroy" @click="removeCurrent(index)"></button>
 						</div>
-						<input class="edit" value="Rule the web">
+						<input class="edit" v-model="item.title" @keyup.enter="editingIndex=''">
 					</li>
 				</ul>
 			</section>

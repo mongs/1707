@@ -128,7 +128,128 @@ computed: {
 
 ### 点击clear completed清除选中项
 
+遍历datas, 如果当前项的isCompleted是false，将其填入到arr空数组中，最后将arr 赋值 给datas，datas中就只剩下未选中项
+
+```html
+<button class="clear-completed" v-show="isShowClear" @click="clearCompleted">Clear completed</button>
+```
+
+```js
+clearCompleted() {
+  let arr = []
+  // 变量datas，如果当前项是未选中，就把它留下
+  // 先把未选中项填到arr中， 最后将arr 赋值给 datas
+  this.datas.forEach(function(element) {
+    if(!element.isCompleted){
+      arr.push(element)
+    }
+  }, this);
+  this.datas = arr  // 所有的未选中项
+}
+```
+
 ### 点x 删除当前项
 
+```html
+<button class="destroy" @click="removeCurrent(index)"></button>
+```
+
+```js
+removeCurrent(index) {
+  this.datas.splice(index, 1)
+}
+```
+
 ### 全选
+
+data添加数据`isCheckedAll:false`，给全选按钮双向绑定isCheckedAll，添加点击事件
+
+```html
+<input id="toggle-all" class="toggle-all" type="checkbox" @click="checkedAll" v-model="isCheckedAll">
+```
+
+```js
+checkedAll() {
+  if(this.isCheckedAll){ //全部选中
+    this.datas.forEach(element => {
+      element.isCompleted = false
+    })
+  }else{
+    this.datas.forEach(element => {
+      element.isCompleted = true
+    })
+  }
+}
+```
+
+### 如果某一项是未选中状态，全选按钮未非激活状态
+
+深度监听datas数据的变化，如果某一项是非选中状态，数据`isCheckedAll = false`，只有**全部**为选中状态`isCheckedAll = true`
+
+```js
+watch: {
+  datas: { // 深度监听
+    handler: function(val){
+      for(let i=0;i<val.length;i++) {
+        if(!val[i].isCompleted) {
+          this.isCheckedAll = false
+          return
+        }
+      }
+      this.isCheckedAll = true
+    },
+    deep: true
+  }
+}
+```
+
+### 双击编辑
+
+双击元素时给元素添加editing这个class就会显示为编辑状态
+
+#### 思路一：DOM操作
+
+给li添加双击事件`<li :class="{completed: item.isCompleted}" v-for="(item,index) in datas" @dblclick="edit(index)">`
+
+```js
+edit(index) {
+  // DOM 操作
+  let lists = this.$refs.todoList.children
+  for(let i=0;i<lists.length;i++){
+    lists[i].classList.remove('editing')
+  }
+  lists[index].classList.add('editing')
+}
+```
+
+给ul添加ref属性`<ul class="todo-list" ref="todoList">`
+
+#### 思路二： 定义一个数据`editingIndex=''`，通过绑定class时的判断条件，添加editing的class
+
+双击当前元素时，使editingIndex=传进去的索引值，绑定class时判断，如果editingIndex=当前项索引就添加editing的class
+
+```html
+<li :class="{completed: item.isCompleted,editing: editingIndex === index}" v-for="(item,index) in datas" @dblclick="edit(index)">
+```
+
+```js
+edit(index) {
+  this.editingIndex = index
+}
+```
+
+双击显示的输入框要显示当前项的title数据，并可以修改当前项的title，所以双向绑定
+
+```html
+<input class="edit" v-model="item.title">
+```
+
+### 回车去除编辑样式
+
+在编辑输入框上回车时，要去除编辑样式（也就是移除editing的class），使`editingIndex=''`即可
+
+```html
+<input class="edit" v-model="item.title" @keyup.enter="editingIndex=''">
+```
+
 
