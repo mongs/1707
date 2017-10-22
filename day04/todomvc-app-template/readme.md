@@ -110,5 +110,22 @@ addItem() {
 ### 显示 clear completed
 
 只有某一项选中，才会显示，没有选中任何项，不会显示
+在计算属性中添加isShowClear，isShowClear最终返回boolean，在`<button class="clear-completed" v-show="isShowClear">Clear completed</button>`上通过v-show控制button的显示隐藏
+
+```js
+computed: {
+  // 是否显示clear completed
+  isShowClear() {
+    for(let i=0;i<this.datas.length;i++){
+      if(this.datas[i].isCompleted){
+        return true
+      }
+    }
+    return false
+  }
+}
+```
 
 ### 点击clear completed清除选中项
+
+### 点x 删除当前项

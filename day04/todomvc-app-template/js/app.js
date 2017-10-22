@@ -19,6 +19,20 @@
 					})
 					this.value = '' // 填完数据后 清空输入的内容
 				}
+			},
+			clearCompleted() {
+				let arr = []
+				// 变量datas，如果当前项是未选中，就把它留下
+				// 先把未选中项填到arr中， 最后将arr 赋值给 datas
+				this.datas.forEach(function(element) {
+					if(!element.isCompleted){
+						arr.push(element)
+					}
+				}, this);
+				this.datas = arr  // 所有的未选中项
+			},
+			removeCurrent(index) {
+				this.datas.splice(index, 1)
 			}
 		},
 		computed: {
