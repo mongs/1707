@@ -20,6 +20,17 @@
 					this.value = '' // 填完数据后 清空输入的内容
 				}
 			}
+		},
+		computed: {
+			// 是否显示clear completed
+			isShowClear() {
+        for(let i=0;i<this.datas.length;i++){
+          if(this.datas[i].isCompleted){
+						return true
+					}
+				}
+				return false
+			}
 		}
 	})
 }

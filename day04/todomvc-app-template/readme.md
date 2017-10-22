@@ -107,3 +107,8 @@ addItem() {
 }
 ```
 
+### 显示 clear completed
+
+只有某一项选中，才会显示，没有选中任何项，不会显示
+
+### 点击clear completed清除选中项
