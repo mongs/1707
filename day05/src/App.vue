@@ -4,7 +4,10 @@
     <h1>测试一下组件吧</h1>
     <input type="text" v-model="value">
     <v-header v-bind:str="value"></v-header>
-    <v-main v-on:sendMsg="say"></v-main>
+    <v-main v-on:sendMsg="say">
+      <p slot="first" class="lead">我是被插入的内容</p>
+      <a href="" slot="second">link</a>
+    </v-main>
     <v-footer></v-footer>
   </div> 
 </template>

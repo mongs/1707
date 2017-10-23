@@ -213,6 +213,136 @@ bus.$on('sibling', () => {
 
 ### slot
 
+插槽，相当于占了个坑。当父组件在使用子组件是包裹的内容会被插入到子组件的slot的位置上。如：
+
+子组件Main.vue中
+
+```html
+<section>
+  <h1>Hello Vue.js</h1>
+  <slot>如果父组件使用我时，没给我插入内容，这里就会显示出来，相当于是个占位文字</slot>
+</section>
+```
+
+父组件App.vue中使用Main组件时：
+
+``` html
+<v-main>
+  <p>你好世界</p>
+</v-main>
+```
+
+那么现在编译的结果就是：
+
+```html
+<section>
+  <h1>Hello Vue.js</h1>
+  <p>你好世界</p>
+</section>
+```
+
+#### 具名slot
+
+如果一个子组件中有多个插槽，可以通过指定name属性，在父组件中通过slot属性=“定义的name”值，指定其插入到对应的插槽中，如：
+
+子组件Main.vue中
+
+```html
+<section>
+  <slot name="first"></slot>
+  <h1>Hello Vue.js</h1>
+  <slot name="second"></slot>
+</section>
+```
+
+父组件App.vue中使用Main组件时：
+
+``` html
+<v-main>
+  <p slot="first">你好世界</p>
+  <a slot="second">link</a>
+</v-main>
+```
+
+那么现在编译的结果就是：
+
+```html
+<section>
+  <p slot="first">你好世界</p>
+  <h1>Hello Vue.js</h1>
+  <a slot="second">link</a>
+</section>
+```
+
 ### transition
+
+过渡，用`<transition>`标签包裹需要过渡的元素，并给transition标签定义name属性，如:
+
+```html
+<transition name="fade">
+  <div class="box" v-show="flag"></div> 
+</transition>
+```
+
+然后定义样式：
+
++ <name>-enter：定义进入过渡的开始状态。在元素被插入时生效，在下一个帧移除。
+
++ <name>-enter-active：定义过渡的状态。在元素整个过渡过程中作用，在元素被插入时生效，在 transition/animation 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
+
++ <name>-enter-to: 2.1.8版及以上 定义进入过渡的结束状态。在元素被插入一帧后生效 (于此同时 v-enter 被删除)，在 transition/animation 完成之后移除。
+
++ <name>-leave: 定义离开过渡的开始状态。在离开过渡被触发时生效，在下一个帧移除。
+
++ <name>-leave-active：定义过渡的状态。在元素整个过渡过程中作用，在离开过渡被触发后立即生效，在 transition/animation 完成之后移除。这个类可以被用来定义过渡的过程时间，延迟和曲线函数。
+
++ <name>-leave-to: 2.1.8版及以上 定义离开过渡的结束状态。在离开过渡被触发一帧后生效 (于此同时 v-leave 被删除)，在 transition/animation 完成之后移除。
+
+在active阶段定义过渡，在enter，leave-to定义其实样式跟结束样式即可。中间状态的样式如果不知道就是默认样式。如：
+
+``` css
+.fade-enter-active, .fade-leave-active{
+  transition: all 500ms ease-in;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+```
+
+#### 过渡起作用的条件
+
++ v-show
++ v-if
++ 动态组件
+
+```html
+<button v-on:click="toggleComponent" class="btn btn-primary">切换</button>
+<transition name="slide">
+  <div :is="currentView"></div>
+</transition>
+```
+
+```js
+import Slide from '@/components/Slide'
+import List from '@/components/List'
+// data
+data () {
+  return {
+    currentView: Slide
+  }
+},
+// methods
+methods: {
+  toggleComponent () {
+    if (this.currentView === Slide) {
+      this.currentView = List
+    } else {
+      this.currentView = Slide
+    }
+  }
+}
+```
+
++ 路由
 
 ### HTTP
