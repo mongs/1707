@@ -28,6 +28,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.$route.params.pid)
     const url = 'http://jsonplaceholder.typicode.com/photos'
     axios({
       method: 'get',

@@ -1,19 +1,17 @@
 <template>
   <div id="app">
+    <tab></tab>
     <router-view></router-view>
-    <v-main></v-main>
   </div>
 </template>
 
 <script>
-import main from '@/components/Main'
-import Search from '@/components/Search'
+import Tab from '@/components/Tab'
 
 export default {
   name: 'app',
   components: {
-    'v-main': main,
-    Search
+    Tab
   }
 }
 </script>
