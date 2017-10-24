@@ -45,7 +45,18 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 
 // enable hot-reload and state-preserving
 // compilation error display
+
+const APIRouter = express.Router()
+
+APIRouter.get('/users', (req, res) => {
+  res.json({
+    status: 0,
+    msg: 'hello'
+  })
+})
+
 app.use(hotMiddleware)
+app.use('/api', APIRouter)
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {

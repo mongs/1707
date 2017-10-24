@@ -3,6 +3,7 @@
     <button @click="getData2" class="waves-effect waves-light btn red">userId = 3</button>
     <button @click="postData" class="waves-effect waves-light btn blue">post</button>
     <button @click="getData1" class="waves-effect waves-light btn">Http</button>
+    <button @click="getApi" class="waves-effect waves-light btn pink">API</button>
     <div class="container">
       <div class="row">
         <div class="col s12 m4" v-for="(data, index) in datas" :key="index">
@@ -79,6 +80,13 @@ export default {
         .catch(err => {
           console.log(err)
           throw new Error(err)
+        })
+    },
+    getApi () {
+      axios
+        .get('/api/users')
+        .then(res => {
+          console.log(res)
         })
     }
   }

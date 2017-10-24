@@ -1,16 +1,19 @@
 <template>
   <div id="app">
+    <search></search>
     <v-main></v-main>
   </div>
 </template>
 
 <script>
 import main from '@/components/Main'
+import Search from '@/components/Search'
 
 export default {
   name: 'app',
   components: {
-    'v-main': main
+    'v-main': main,
+    Search
   }
 }
 </script>
