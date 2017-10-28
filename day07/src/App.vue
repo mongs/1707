@@ -2,6 +2,8 @@
   <div id="app">
     <tab></tab>
     <router-view/>
+    <router-view name="a" />
+    <router-view name="b" />
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view></router-view>
     <p v-show="!flag">加载中...</p>
     <ul>
       <li v-for="(item, index) in news" :key="index">

@@ -3,6 +3,9 @@
     <div>
       <router-link class="link" v-for="item in titles" :key="item.tableNum" v-bind:to="'/news/'+item.tableNum">{{ item.title }}</router-link>
     </div>
+    <div>
+      <router-link class="link" v-for="item in titles" :key="item.tableNum" v-bind:to="{name: 'Main', params: {id: item.tableNum}}">{{ item.title }}</router-link>
+    </div>
   </div>
 </template>
 <script>
