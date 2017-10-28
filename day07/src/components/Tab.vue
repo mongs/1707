@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <router-link class="link" v-for="item in titles" :key="item.tableNum" to="/">{{ item.title }}</router-link>
+      <router-link class="link" v-for="item in titles" :key="item.tableNum" v-bind:to="'/news/'+item.tableNum">{{ item.title }}</router-link>
     </div>
   </div>
 </template>
