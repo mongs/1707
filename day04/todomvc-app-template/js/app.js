@@ -42,6 +42,10 @@
 			},
 			clearCompleted() {
 				let arr = []
+				arr = this.datas.filter(element => {
+					return !element.isCompleted
+				});
+				/*
 				// 变量datas，如果当前项是未选中，就把它留下
 				// 先把未选中项填到arr中， 最后将arr 赋值给 datas
 				this.datas.forEach(function(element) {
@@ -49,6 +53,7 @@
 						arr.push(element)
 					}
 				}, this);
+				*/
 				this.datas = arr  // 所有的未选中项
 			},
 			removeCurrent(index) {
@@ -80,12 +85,17 @@
 		computed: {
 			// 是否显示clear completed
 			isShowClear() {
+				return !this.datas.every((element, index) => {
+				  return !element.isCompleted
+				})
+				/*
         for(let i=0;i<this.datas.length;i++){
           if(this.datas[i].isCompleted){
 						return true
 					}
 				}
 				return false
+				*/
 			}
 		},
 		watch: {
