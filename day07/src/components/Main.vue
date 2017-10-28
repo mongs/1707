@@ -9,8 +9,11 @@
 </template>
 <script>
 export default {
-  created () {
-    console.log(this.$route.params.id)
+  watch: {
+    '$route': (val) => {
+      let tableNum = val.params.id
+      console.log(tableNum)
+    }
   }
 }
 </script>
