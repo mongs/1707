@@ -28,6 +28,18 @@ export default {
         this.news = res.data
       })
   },
+  beforeRouteEnter: (to, from, next) => {
+    console.log(to, from, 1)
+    next()
+  },
+  beforeRouteUpdate: (to, from, next) => {
+    console.log(to, from, 2)
+    next()
+  },
+  beforeRouteLeave: (to, from, next) => {
+    console.log(to, from, 3)
+    next()
+  },
   watch: {
     '$route': function (val) {
       this.flag = false

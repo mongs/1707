@@ -3,10 +3,12 @@ import Router from 'vue-router'
 import Main from '@/components/Main'
 import Info from '@/components/Info'
 import List from '@/components/List'
+import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
 const router = new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
@@ -16,14 +18,22 @@ const router = new Router({
       path: '/news/:id',
       name: 'Main',
       component: Main,
+      beforeEnter: (to, from, next) => {
+        console.log(to, from)
+        next()
+      },
       children: [
         {
           path: 'info',  // /news/:id/info
-          component: Info
+          component: Info,
+          props: true
         },
         {
           path: 'list',
-          component: List
+          component: List,
+          props: {
+            name: 'wally'
+          }
         }
       ]
     },
@@ -35,8 +45,19 @@ const router = new Router({
         a: List,
         b: Main
       }
+    },
+    {
+      path: '/list',
+      component: HelloWorld
     }
   ]
 })
-console.log(router)
 export default router
+
+/*
+router.beforeEach((to, from, next) => {
+  // console.log(to, from)
+  next(false)
+  // next('/')
+})
+*/
