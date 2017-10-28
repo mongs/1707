@@ -15,25 +15,56 @@ const store = new Vuex.Store({
     products: [
       {
         id: 123111,
-        name: '坚果PRO'
+        name: '坚果PRO',
+        added: true
       },
       {
         id: 123112,
-        name: '小米PRO'
+        name: '小米PRO',
+        added: false
       },
       {
         id: 123113,
-        name: '华为PRO'
+        name: '华为PRO',
+        added: false
       },
       {
         id: 123114,
-        name: '三星PRO'
+        name: '三星PRO',
+        added: false
       },
       {
         id: 123115,
-        name: '苹果PRO'
+        name: '苹果PRO',
+        added: false
       }
     ]
+  },
+  getters: {
+    products (state) {
+      return state.products.filter(item => !item.added)
+    },
+    cards (state) {
+      return state.products.filter(item => item.added)
+    }
+  },
+  mutations: {
+    add (state, pid) {
+      for (let i = 0; i < state.products.length; i++) {
+        if (state.products[i].id === pid) {
+          state.products[i].added = true
+          return
+        }
+      }
+    },
+    delete (state, pid) {
+      for (let i = 0; i < state.products.length; i++) {
+        if (state.products[i].id === pid) {
+          state.products[i].added = false
+          return
+        }
+      }
+    }
   }
 })
 
