@@ -28,6 +28,7 @@ export default {
 }
 ul{
   width: 250px;
+  min-height: 300px;
   border: 1px solid #ccc;
 }
 ul:first-child{
