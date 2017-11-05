@@ -21,3 +21,9 @@ export const getProductsData = (context) => {
       throw new Error(err)
     })
 }
+// 加setTimeout 是为了模拟异步
+export const deleteCardsProduct = (context, pid) => {
+  setTimeout(function () {
+    context.commit('DELETE_CARDS_PRODUCT', pid)
+  }, 200)
+}

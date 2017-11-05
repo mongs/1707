@@ -7,7 +7,7 @@
           <img :src="product.pic" :alt="product.name">
           <p>{{ product.name }}</p>
           <p>{{ product.price }}</p>
-          <button>加入购物车</button>
+          <button :disabled="product.stock<1" @click="addCard(product.id)">加入购物车</button>
           <button>立即购买</button>
         </a>
       </li>
@@ -25,8 +25,10 @@ export default {
       return this.$store.state.products
     }
   },
-  created () {
-    this.$store.dispatch('getProductsData')
+  methods: {
+    addCard (pid) {
+      this.$store.commit('ADD_CARDS', pid)
+    }
   }
 }
 </script>

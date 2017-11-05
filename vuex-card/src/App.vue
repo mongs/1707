@@ -9,6 +9,9 @@
 import Tab from '@/components/Tab'
 export default {
   name: 'app',
+  created () {
+    this.$store.dispatch('getProductsData')
+  },
   components: {
     Tab
   }

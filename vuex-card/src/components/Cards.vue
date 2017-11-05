@@ -1,17 +1,17 @@
 <template lang="html">
   <div class="">
     <ul>
-      <li>
+      <li v-for="(card, index) in cards" :key="index">
         <input type="checkbox">
-        <span class="name">产品名称</span>
-        <span class="price">单价</span>
+        <span class="name">{{ card.name }}</span>
+        <span class="price">{{ card.price }}</span>
         <span>
           <button>-</button>
-          <input type="number" disabled>
-          <button>+</button>
+          <input type="number" disabled :value="card.num">
+          <button :disabled="card.stock < 1" @click="plus(card.id)">+</button>
         </span>
-        <span class="price">总价</span>
-        <button>×</button>
+        <span class="price">{{ card.num*card.price }}</span>
+        <button  @click="deleteProduct(card.id)">×</button>
       </li>
     </ul>
   </div>
@@ -22,6 +22,15 @@ export default {
   computed: {
     cards () {
       return this.$store.getters.cardsProducts
+    }
+  },
+  methods: {
+    plus (pid) {
+      this.$store.commit('PLUS', pid)
+    },
+    deleteProduct (pid) {
+      console.log(1)
+      this.$store.dispatch('deleteCardsProduct', pid)
     }
   }
 }
