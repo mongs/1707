@@ -16,19 +16,51 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 export default {
+  computed: mapState([
+    'products'
+  ]),
+
   /*
+
+  computed: {
+    ...mapState({
+      'products': 'products'
+    })
+  },
+
+  computed: {
+    ...mapState([
+      'products'
+    ])
+  },
+
+  computed: mapState([
+    'products'
+  ]),
+
+  computed: mapState({
+    '别名': '数据的名字'
+  }),
+
   通过计算属性去拿store里的数据
-   */
+
   computed: {
     products () {
       return this.$store.state.products
     }
   },
+   */
   methods: {
+    ...mapMutations({
+      'addCard': 'ADD_CARDS'
+    })
+    /*
     addCard (pid) {
       this.$store.commit('ADD_CARDS', pid)
     }
+    */
   }
 }
 </script>

@@ -9,11 +9,13 @@ actions请求api拿到数据
 mutations 再去修改 state
  */
 import axios from 'axios'
+import * as types from './mutation-types'
+
 export const getProductsData = (context) => {
   axios
     .get('/api')
     .then(res => {
-      context.commit('GET_PRODUCTS_DATA', res.data.data)
+      context.commit(types.GET_PRODUCTS_DATA, res.data.data)
       // context.state.products = res.data.data
     })
     .catch(err => {
@@ -24,6 +26,6 @@ export const getProductsData = (context) => {
 // 加setTimeout 是为了模拟异步
 export const deleteCardsProduct = (context, pid) => {
   setTimeout(function () {
-    context.commit('DELETE_CARDS_PRODUCT', pid)
+    context.commit(types.DELETE_CARDS_PRODUCT, pid)
   }, 200)
 }

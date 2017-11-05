@@ -18,20 +18,33 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   computed: {
+    ...mapGetters({
+      'cards': 'cardsProducts'
+    })
+    /*
     cards () {
       return this.$store.getters.cardsProducts
     }
+    */
   },
   methods: {
+    ...mapMutations({
+      'plus': 'PLUS'
+    }),
+    ...mapActions({
+      'deleteProduct': 'deleteCardsProduct'
+    })
+    /*
     plus (pid) {
       this.$store.commit('PLUS', pid)
     },
     deleteProduct (pid) {
-      console.log(1)
       this.$store.dispatch('deleteCardsProduct', pid)
     }
+    */
   }
 }
 </script>
