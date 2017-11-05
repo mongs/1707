@@ -13,6 +13,16 @@ const store = new Vuex.Store({
     cards: [],
     products: []
   },
+  getters: {
+    cardsProducts (state) {
+      /*
+      return state.products.filter(function (element) {
+        return element.isAdded
+      });
+      */
+      return state.products.filter(element => element.isAdded);
+    }
+  },
   actions,
   mutations
 })
